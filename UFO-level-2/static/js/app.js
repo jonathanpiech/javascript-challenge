@@ -28,37 +28,44 @@ button.on("click", function() {
 
   console.log(inputValue);
 
-  // Filter data by selected date
-  var filteredData = tableData.filter(selectDate => selectDate.datetime === inputValue);
-  
+  // Select search parameter
+  var searchSelection = d3.select('input[name="selectfilter"]:checked').node().value;
+
+  console.log(searchSelection);
+
+  // Create variable for filtered data
+  var filteredData = tableData;
+
+  // Filter data based on selected search parameter
+  switch (searchSelection) {
+    case "date":
+      filteredData = tableData.filter(selectSearch => selectSearch.datetime === inputValue);
+      break;
+    case "city":
+      filteredData = tableData.filter(selectSearch => selectSearch.city === inputValue);
+      break;
+    case "state":
+      filteredData = tableData.filter(selectSearch => selectSearch.state === inputValue);
+      break;
+    case "country":
+      filteredData = tableData.filter(selectSearch => selectSearch.country === inputValue);
+      break;
+    case "shape":
+      filteredData = tableData.filter(selectSearch => selectSearch.shape === inputValue);
+      break;
+    default:
+      filteredData = tableData;
+      break;
+  }
+
   console.log(filteredData);
-
-  // If not valid, filter by city
-  if (filteredData === undefined || filteredData.length == 0) {
-    filteredData = tableData.filter(selectDate => selectDate.city === inputValue);
-  };
-
-  // If not valid, filter by state
-  if (filteredData === undefined || filteredData.length == 0) {
-    filteredData = tableData.filter(selectDate => selectDate.state === inputValue);
-  };
-
-  // If not valid, filter by country
-  if (filteredData === undefined || filteredData.length == 0) {
-    filteredData = tableData.filter(selectDate => selectDate.country === inputValue);
-  };
-
-  // If not valid, filter by shape
-  if (filteredData === undefined || filteredData.length == 0) {
-    filteredData = tableData.filter(selectDate => selectDate.shape === inputValue);
-  };
 
   // If not a valid input, return the whole table
   if (filteredData === undefined || filteredData.length == 0) {
     filteredData = tableData;
   };
 
-  // Clear the table
+  // Clear the old table
   tbody.html("");
 
   // Create the new table

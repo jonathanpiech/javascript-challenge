@@ -35,7 +35,17 @@
                   <div class="form-group">
                     <ul class="list-group" id="filters">
                       <li class="filter list-group-item">
-                        <label for="date">Enter a Date, City, State, Country, or Shape</label>
+                        <input type="radio" name="selectfilter" id="r1" value="date" checked>
+                        <label for="r1">DATE</label><br>
+                        <input type="radio" name="selectfilter" id="r2" value="city">
+                        <label for="r2">CITY</label><br>
+                        <input type="radio" name="selectfilter" id="r3" value="state">
+                        <label for="r3">STATE</label><br>
+                        <input type="radio" name="selectfilter" id="r4" value="country">
+                        <label for="r4">COUNTRY</label><br>
+                        <input type="radio" name="selectfilter" id="r5" value="shape">
+                        <label for="r5">SHAPE</label><br>
+                        <br>
                         <input class="form-control" id="datetime" type="text" placeholder="1/10/2010">
                       </li>
                     </ul>
